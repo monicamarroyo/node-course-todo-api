@@ -5,6 +5,9 @@ var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 
 var app = express(); 
+// this is for heroku or localhost
+const port = process.env.PORT || 3000; //
+// if the port is availabe use that else use localhost
 app.use(bodyParser.json()); // this is the middlewear we give to express
 
 app.post('/todos', (req,res) => { // creating a new todo
@@ -53,8 +56,8 @@ app.get('/todos/:id', (req, res) => {
 
 
 });
-app.listen(3000, () => {
-    console.log('Started on port 3000');
+app.listen(port, () => {
+    console.log(`Started on port ${port}`);
 });
 
 module.exports = {app};
